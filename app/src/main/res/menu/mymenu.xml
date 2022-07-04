@@ -2,13 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
+    <item
+        android:id="@+id/search_bar"
+        android:icon="@drawable/ic_search"
+        android:title=""
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />
     <item
         android:id="@+id/delete_all"
-        android:title="Delete All" />
+        android:title="Delete All"
+        app:showAsAction="never"/>
 
     <item
-        android:id="@+id/farhan"
-        android:title="Farhan" />
+        android:id="@+id/sort_by_priority"
+        android:title="Sort By Priority"
+        app:showAsAction="never"/>
+
 
 </menu>

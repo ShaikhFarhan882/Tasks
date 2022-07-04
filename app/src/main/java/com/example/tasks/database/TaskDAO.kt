@@ -19,4 +19,11 @@ interface TaskDAO {
 
     @Query("DELETE FROM task_db")
      suspend fun deleteAll()
+
+     @Query("SELECT * FROM task_db ORDER BY priority ASC")
+     fun sort() : LiveData<List<TaskEntity>>
+
+
+     @Query("SELECT * FROM task_db WHERE title LIKE :query")
+     fun searchItem(query : String) : LiveData<List<TaskEntity>>
 }

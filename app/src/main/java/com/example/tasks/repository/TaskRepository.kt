@@ -17,4 +17,8 @@ class TaskRepository(val taskDAO: TaskDAO) {
     }
 
     fun getAllTask() : LiveData<List<TaskEntity>> = taskDAO.getAllData()
+
+    fun sortByPriority() : LiveData<List<TaskEntity>> = taskDAO.sort()
+
+    fun searchItem(query : String) : LiveData<List<TaskEntity>> = taskDAO.searchItem(query)
 }

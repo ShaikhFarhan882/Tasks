@@ -1,19 +1,24 @@
 package com.example.tasks.ui.tasklist
 
+import android.content.DialogInterface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
+import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.tasks.R
 import com.example.tasks.databinding.FragmentListBinding
 import com.example.tasks.viewmodel.TaskViewModel
+import es.dmoral.toasty.Toasty
 
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(),SearchView.OnQueryTextListener {
 
     private val viewModel: TaskViewModel by viewModels()
 
@@ -36,7 +41,6 @@ class ListFragment : Fragment() {
         adapter = TaskAdapter(TaskClickListener { taskEntity ->
             findNavController().navigate(ListFragmentDirections.actionListFragmentToUpdateFragment(
                 taskEntity))
-
         })
 
 
@@ -55,6 +59,7 @@ class ListFragment : Fragment() {
         }
 
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true)
         return binding.root
 
 
@@ -63,15 +68,67 @@ class ListFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.mymenu, menu)
+        val search = menu.findItem(R.id.search_bar)
+        val searchView = search.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.delete_all -> {
-                viewModel.deleteAll()
+                deleteAllTasks()
+            }
+
+            R.id.sort_by_priority ->{
+                viewModel.sortByPriority
+                    .observe(viewLifecycleOwner,{tasks ->
+                    adapter.submitList(tasks)
+                        Toasty.normal(requireContext(),"High to Low",Toasty.LENGTH_SHORT).show()
+                })
             }
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onQueryTextSubmit(query : String?): Boolean {
+        if(query!=null){
+            searchThroughDatabase(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query : String?): Boolean {
+        if(query!=null){
+            searchThroughDatabase(query)
+        }
+        return true
+    }
+
+    private fun searchThroughDatabase(query: String) {
+        var searchQuery: String = query
+        searchQuery = "%$searchQuery%"
+
+       viewModel.searchDatabase(searchQuery).observe(viewLifecycleOwner,{tasks ->
+           adapter.submitList(tasks)
+       })
+
+    }
+
+
+
+
+    fun deleteAllTasks(){
+        android.app.AlertDialog.Builder(requireContext())
+            .setIcon(android.R.drawable.ic_delete)
+            .setTitle("Clear All?")
+            .setMessage("Are you sure you want to delete all tasks?")
+            .setPositiveButton("Yes",
+                DialogInterface.OnClickListener { dialog, which -> viewModel.deleteAll() }
+            )
+            .setNegativeButton("No", null)
+            .show()
+    }
+
 
 }

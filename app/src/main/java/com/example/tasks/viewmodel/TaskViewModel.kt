@@ -17,10 +17,12 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: TaskRepository
 
     val getAllTasks: LiveData<List<TaskEntity>>
+    val sortByPriority : LiveData<List<TaskEntity>>
 
     init {
         repository = TaskRepository(taskDao)
         getAllTasks = repository.getAllTask()
+        sortByPriority = repository.sortByPriority()
     }
 
     fun insert(taskEntity: TaskEntity) {
@@ -54,6 +56,12 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    fun searchDatabase(query : String) : LiveData<List<TaskEntity>>{
+        return repository.searchItem(query)
+    }
+
+
 
 
 }
