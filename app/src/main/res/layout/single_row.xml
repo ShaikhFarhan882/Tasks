@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+     <variable
+         name="taskEntity"
+         type="com.example.tasks.database.TaskEntity" />
+
+        <variable
+            name="clickListener"
+            type="com.example.tasks.ui.tasklist.TaskClickListener" />
+
+    </data>
+
+ <com.google.android.material.card.MaterialCardView
+     android:layout_width="match_parent"
+     android:backgroundTint="@color/gray"
+     android:onClick="@{() -> clickListener.onClick(taskEntity)}"
+     android:layout_marginTop="10dp"
+     app:cardCornerRadius="8dp"
+     android:elevation="8dp"
+     app:strokeColor="@color/white"
+     app:strokeWidth="1dp"
+     android:layout_height="wrap_content">
+
+     <androidx.constraintlayout.widget.ConstraintLayout
+         android:id="@+id/row_background"
+         android:layout_width="match_parent"
+         android:padding="4dp"
+         android:layout_height="match_parent">
+
+         <TextView
+             android:id="@+id/taskTitle"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="8dp"
+             android:layout_marginTop="8dp"
+             android:layout_marginEnd="8dp"
+             android:maxLines="3"
+             tools:text="Title"
+             android:text="@{taskEntity.title}"
+             android:textSize="28sp"
+             android:textColor="@color/white"
+             android:textStyle="bold"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent" />
+
+         <TextView
+             android:id="@+id/taskPriority"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="8dp"
+             android:layout_marginTop="8dp"
+             android:layout_marginEnd="8dp"
+             tools:text="Priority"
+             android:textStyle="italic"
+             android:textSize="20sp"
+             android:textColor="@color/black"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/taskTitle"
+             setPriority="@{taskEntity.priority}"
+             />
+
+         <TextView
+             android:id="@+id/timeStamp"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="8dp"
+             android:layout_marginTop="8dp"
+             android:layout_marginEnd="8dp"
+             tools:text ="Timestamp"
+             android:textSize="18sp"
+             android:textColor="@color/white"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/taskPriority"
+             app:layout_constraintVertical_bias="0.0"
+             setTimestamp="@{taskEntity.timeStamp}"/>
+
+     </androidx.constraintlayout.widget.ConstraintLayout>
+ </com.google.android.material.card.MaterialCardView>
+
+</layout>
