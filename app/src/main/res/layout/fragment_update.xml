@@ -23,7 +23,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:hint="Update Task Name"
+            android:inputType="text"
             android:maxLength="70"
+            android:maxLines="3"
             android:padding="10dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
@@ -63,14 +65,14 @@
             android:id="@+id/Delete_Task"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="328dp"
+            android:layout_marginTop="36dp"
             android:backgroundTint="@color/delete"
             android:text="Delete Task"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/Update_Task"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/Update_Task" />
+            app:layout_constraintStart_toStartOf="@+id/Update_Task"
+            app:layout_constraintTop_toBottomOf="@+id/Update_Task" />
 
         <ImageView
             android:id="@+id/imageView"

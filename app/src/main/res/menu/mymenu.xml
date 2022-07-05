@@ -17,6 +17,10 @@
         android:id="@+id/sort_by_priority"
         android:title="Sort By Priority"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/default_view"
+        android:title="Show as Default"
+        app:showAsAction="never"/>
 
 
 </menu>

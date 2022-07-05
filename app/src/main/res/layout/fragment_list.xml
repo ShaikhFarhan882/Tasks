@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:backgroundTint="@color/yellow"
-            android:elevation="8dp"
+            android:elevation="15dp"
             android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="@+id/recView"
             app:layout_constraintEnd_toEndOf="parent"

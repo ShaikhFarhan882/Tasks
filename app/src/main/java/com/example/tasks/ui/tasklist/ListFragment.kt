@@ -12,10 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tasks.R
 import com.example.tasks.databinding.FragmentListBinding
 import com.example.tasks.viewmodel.TaskViewModel
 import es.dmoral.toasty.Toasty
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 
 class ListFragment : Fragment(),SearchView.OnQueryTextListener {
@@ -51,7 +53,14 @@ class ListFragment : Fragment(),SearchView.OnQueryTextListener {
 
 
         binding.apply {
+
+            recView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+
             binding.recView.adapter = adapter
+
+            recView.itemAnimator = SlideInUpAnimator().apply {
+                addDuration = 700
+            }
 
             fabAdd.setOnClickListener {
                 findNavController().navigate(R.id.action_listFragment_to_addFragment)
@@ -86,6 +95,12 @@ class ListFragment : Fragment(),SearchView.OnQueryTextListener {
                     adapter.submitList(tasks)
                         Toasty.normal(requireContext(),"High to Low",Toasty.LENGTH_SHORT).show()
                 })
+            }
+
+            R.id.default_view ->{
+                viewModel.getAllTasks.observe(viewLifecycleOwner) {
+                    adapter.submitList(it)
+                }
             }
         }
         return super.onOptionsItemSelected(item)
