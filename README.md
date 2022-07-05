@@ -5,4 +5,5 @@
  Create Tasks  
 Delete existing Tasks  
 View/Update Tasks  
+Sort Tasks by Priority  
 Search Tasks
