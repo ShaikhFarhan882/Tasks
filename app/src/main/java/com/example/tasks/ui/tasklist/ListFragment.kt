@@ -106,17 +106,25 @@ class ListFragment : Fragment(),SearchView.OnQueryTextListener {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onQueryTextSubmit(query : String?): Boolean {
+    override fun onQueryTextSubmit(query : String?): Boolean {/*
         if(query!=null){
             searchThroughDatabase(query)
-        }
+        }*/
         return true
     }
 
     override fun onQueryTextChange(query : String?): Boolean {
-        if(query!=null){
+
+        if(query!!.isEmpty()){
+            viewModel.getAllTasks.observe(viewLifecycleOwner) {
+                adapter.submitList(it)
+            }
+        }
+        else{
             searchThroughDatabase(query)
         }
+
+
         return true
     }
 
@@ -129,8 +137,6 @@ class ListFragment : Fragment(),SearchView.OnQueryTextListener {
        })
 
     }
-
-
 
 
     fun deleteAllTasks(){
