@@ -20,7 +20,7 @@ import es.dmoral.toasty.Toasty
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 
-class ListFragment : Fragment(),SearchView.OnQueryTextListener {
+class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private val viewModel: TaskViewModel by viewModels()
 
@@ -54,7 +54,8 @@ class ListFragment : Fragment(),SearchView.OnQueryTextListener {
 
         binding.apply {
 
-            recView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+            recView.layoutManager =
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
             binding.recView.adapter = adapter
 
@@ -77,6 +78,7 @@ class ListFragment : Fragment(),SearchView.OnQueryTextListener {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.mymenu, menu)
+
         val search = menu.findItem(R.id.search_bar)
         val searchView = search.actionView as? SearchView
         searchView?.isSubmitButtonEnabled = true
@@ -89,15 +91,15 @@ class ListFragment : Fragment(),SearchView.OnQueryTextListener {
                 deleteAllTasks()
             }
 
-            R.id.sort_by_priority ->{
+            R.id.sort_by_priority -> {
                 viewModel.sortByPriority
-                    .observe(viewLifecycleOwner,{tasks ->
-                    adapter.submitList(tasks)
-                        Toasty.normal(requireContext(),"High to Low",Toasty.LENGTH_SHORT).show()
-                })
+                    .observe(viewLifecycleOwner, { tasks ->
+                        adapter.submitList(tasks)
+                        Toasty.normal(requireContext(), "High to Low", Toasty.LENGTH_SHORT).show()
+                    })
             }
 
-            R.id.default_view ->{
+            R.id.default_view -> {
                 viewModel.getAllTasks.observe(viewLifecycleOwner) {
                     adapter.submitList(it)
                 }
@@ -106,21 +108,20 @@ class ListFragment : Fragment(),SearchView.OnQueryTextListener {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onQueryTextSubmit(query : String?): Boolean {/*
+    override fun onQueryTextSubmit(query: String?): Boolean {/*
         if(query!=null){
             searchThroughDatabase(query)
         }*/
         return true
     }
 
-    override fun onQueryTextChange(query : String?): Boolean {
+    override fun onQueryTextChange(query: String?): Boolean {
 
-        if(query!!.isEmpty()){
+        if (query!!.isEmpty()) {
             viewModel.getAllTasks.observe(viewLifecycleOwner) {
                 adapter.submitList(it)
             }
-        }
-        else{
+        } else {
             searchThroughDatabase(query)
         }
 
@@ -132,14 +133,14 @@ class ListFragment : Fragment(),SearchView.OnQueryTextListener {
         var searchQuery: String = query
         searchQuery = "%$searchQuery%"
 
-       viewModel.searchDatabase(searchQuery).observe(viewLifecycleOwner,{tasks ->
-           adapter.submitList(tasks)
-       })
+        viewModel.searchDatabase(searchQuery).observe(viewLifecycleOwner, { tasks ->
+            adapter.submitList(tasks)
+        })
 
     }
 
 
-    fun deleteAllTasks(){
+    fun deleteAllTasks() {
         android.app.AlertDialog.Builder(requireContext())
             .setIcon(android.R.drawable.ic_delete)
             .setTitle("Clear All?")

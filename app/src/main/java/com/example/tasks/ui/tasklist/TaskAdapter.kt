@@ -35,8 +35,6 @@ class TaskAdapter(private val clickListener: TaskClickListener) : ListAdapter<Ta
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }
-
-
     }
 }
 

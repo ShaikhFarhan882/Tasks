@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import java.text.DateFormat
 
 @BindingAdapter("setPriority")
+
 fun setPriority(textView : TextView, priority: Int) {
     when (priority) {
 
