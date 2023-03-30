@@ -17,6 +17,7 @@ import com.example.tasks.R
 import com.example.tasks.databinding.FragmentListBinding
 import com.example.tasks.viewmodel.TaskViewModel
 import es.dmoral.toasty.Toasty
+import jp.wasabeef.recyclerview.animators.LandingAnimator
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 
@@ -59,8 +60,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
             binding.recView.adapter = adapter
 
-            recView.itemAnimator = SlideInUpAnimator().apply {
-                addDuration = 700
+            recView.itemAnimator = LandingAnimator().apply {
+                addDuration = 440
             }
 
             fabAdd.setOnClickListener {
