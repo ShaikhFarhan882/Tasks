@@ -3,11 +3,11 @@
  
  # Features  
 Create Tasks  
-Delete Tasks  
 Update Tasks  
+Delete Tasks  
 Search Tasks  
 Sort Tasks by Priority  
-Material 3 Dynamic color support
+Material 3 Dynamic color supported
 
 # Screenshots  
 
