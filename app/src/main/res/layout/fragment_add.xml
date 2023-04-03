@@ -15,25 +15,6 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="21dp">
 
-
-        <EditText
-            android:id="@+id/taskTitle"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:hint="Write Something..."
-            android:inputType="textMultiLine"
-            android:maxLines="7"
-            android:padding="10dp"
-            android:gravity="start"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toEndOf="@id/guideline3"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_priority"
-            app:layout_constraintVertical_bias="0.057" />
-
         <Spinner
             android:id="@+id/spinner_priority"
             android:layout_width="0dp"
@@ -45,11 +26,39 @@
             app:layout_constraintStart_toStartOf="@id/guideline2"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/taskTitleLayout"
+            android:layout_width="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="200dp"
+            android:hint="Write something"
+            style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toEndOf="@id/guideline3"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_priority"
+            app:layout_constraintVertical_bias="0.057">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/taskTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:inputType="textMultiLine"
+                android:maxLines="7"
+                android:padding="10dp"
+                android:textSize="20sp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/Add_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
             android:text="Add Task"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.47"
@@ -76,15 +85,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="320dp" />
+            app:layout_constraintGuide_begin="280dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="Task Description"
-            app:layout_constraintBottom_toTopOf="@+id/taskTitle"
-            app:layout_constraintStart_toStartOf="@id/guideline2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
