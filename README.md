@@ -7,7 +7,7 @@ Update Tasks
 Delete Tasks  
 Search Tasks  
 Sort Tasks by Priority  
-Material 3 Dynamic color supported
+Material 3 Theme
 
 # Screenshots  
 
