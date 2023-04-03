@@ -16,22 +16,6 @@
         tools:layout_editor_absoluteY="21dp">
 
 
-        <EditText
-            android:id="@+id/taskTitle_Update"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="36dp"
-            android:gravity="start"
-            android:hint="Update Task Name"
-            android:inputType="textMultiLine"
-            android:maxLines="7"
-            android:padding="10dp"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="@id/guideline6"
-            app:layout_constraintHorizontal_bias="0.486"
-            app:layout_constraintStart_toStartOf="@id/guideline5"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_priority_update" />
-
         <Spinner
             android:id="@+id/spinner_priority_update"
             android:layout_width="0dp"
@@ -43,11 +27,36 @@
             app:layout_constraintStart_toStartOf="@id/guideline5"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/taskTitleUpdateLayout"
+            style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:hint="Task Description"
+            app:layout_constraintEnd_toEndOf="@id/guideline6"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_priority_update"
+            app:layout_constraintVertical_bias="0.057">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/taskTitle_Update"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:inputType="textMultiLine"
+                android:maxLines="7"
+                android:padding="10dp"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/Update_Task"
+            style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/md_theme_light_tertiary"
             android:text="Update Task"
             android:textAllCaps="false"
@@ -57,9 +66,10 @@
 
         <Button
             android:id="@+id/Delete_Task"
+            style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/md_theme_light_error"
             android:text="Delete Task"
             android:textAllCaps="false"
@@ -86,15 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="320dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="Task Description"
-            app:layout_constraintBottom_toTopOf="@+id/taskTitle_Update"
-            app:layout_constraintStart_toStartOf="@id/guideline5" />
+            app:layout_constraintGuide_begin="280dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline8"
