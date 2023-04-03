@@ -2,13 +2,14 @@
  Tasks is a android To-Do MVVM Architecture App written in Kotlin.(ViewModel, ROOM, Livedata, Coroutines)  
  
  # Features  
- Create Tasks  
-Delete existing Tasks  
-View/Update Tasks  
-Sort Tasks by Priority  
+Create Tasks  
+Update Tasks  
+Delete Tasks  
 Search Tasks  
+Sort Tasks by Priority  
+Material 3 Theme
 
-#Screenshots  
+# Screenshots  
 
 ![1](https://user-images.githubusercontent.com/85299521/177316755-2e739315-bc56-449c-9a22-da1550da3b0e.png)
 ![Screenshot_20230330-192956](https://user-images.githubusercontent.com/85299521/228861668-98956f1d-8963-40c3-8206-6b323c91a004.png)
