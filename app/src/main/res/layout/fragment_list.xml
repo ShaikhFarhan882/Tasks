@@ -12,7 +12,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/dark"
         tools:context=".ui.tasklist.ListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -30,13 +29,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/fab_add"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:backgroundTint="@color/teal_200"
+            android:layout_height="45dp"
             android:elevation="20dp"
-            android:src="@drawable/ic_add"
+            android:drawableLeft="@drawable/ic_add"
+            android:text="Create"
             app:layout_constraintBottom_toBottomOf="@+id/recView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.901"

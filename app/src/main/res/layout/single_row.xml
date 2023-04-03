@@ -16,7 +16,6 @@
 
  <com.google.android.material.card.MaterialCardView
      android:layout_width="match_parent"
-     android:backgroundTint="@color/gray"
      android:onClick="@{() -> clickListener.onClick(taskEntity)}"
      android:layout_marginTop="10dp"
      app:cardCornerRadius="8dp"
@@ -40,7 +39,6 @@
              tools:text="Title"
              android:text="@{taskEntity.title}"
              android:textSize="26sp"
-             android:textColor="@color/white"
              android:textStyle="bold"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +54,6 @@
              tools:text="Priority"
              android:textStyle="italic"
              android:textSize="18sp"
-             android:textColor="@color/black"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/taskTitle"
@@ -72,7 +69,6 @@
              android:layout_marginEnd="8dp"
              tools:text ="Timestamp"
              android:textSize="16sp"
-             android:textColor="@color/white"
              app:layout_constraintBottom_toBottomOf="parent"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintStart_toStartOf="parent"

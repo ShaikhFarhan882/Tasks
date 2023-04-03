@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tasks.R
 import com.example.tasks.databinding.FragmentListBinding
 import com.example.tasks.viewmodel.TaskViewModel
+import com.google.android.material.elevation.SurfaceColors
+import com.google.android.material.elevation.SurfaceColors.SURFACE_2
 import es.dmoral.toasty.Toasty
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
@@ -37,8 +39,11 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.viewModel = viewModel
 
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "Task Lists"
-        (requireActivity() as AppCompatActivity).supportActionBar?.setBackgroundDrawable(
-            ColorDrawable(getResources().getColor(R.color.purple_700)));
+
+
+
+     /*   (requireActivity() as AppCompatActivity).supportActionBar?.setBackgroundDrawable(
+            ColorDrawable(getResources().getColor(R.color.purple_700)));*/
 
 
         adapter = TaskAdapter(TaskClickListener { taskEntity ->
