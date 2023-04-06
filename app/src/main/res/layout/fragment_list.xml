@@ -15,7 +15,7 @@
         tools:context=".ui.tasklist.ListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_margin="10dp"
+            android:layout_marginTop="6dp"
             android:id="@+id/recView"
             android:layout_width="0dp"
             android:layout_height="0dp"
