@@ -29,7 +29,7 @@ class UpdateFragment : Fragment() {
 
         val args = UpdateFragmentArgs.fromBundle(requireArguments())
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Update Tasks"
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Update Task"
 
         binding.apply {
             taskTitleUpdate.setText(args.taskEntity.title)

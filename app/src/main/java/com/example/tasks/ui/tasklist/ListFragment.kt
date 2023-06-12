@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tasks.R
 import com.example.tasks.databinding.FragmentListBinding
+import com.example.tasks.utils.EmptyStateObserver
 import com.example.tasks.viewmodel.TaskViewModel
 import es.dmoral.toasty.Toasty
 import jp.wasabeef.recyclerview.animators.LandingAnimator
@@ -33,7 +34,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.viewModel = viewModel
 
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Task Lists"
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Task List"
 
 
         adapter = TaskAdapter(TaskClickListener { taskEntity ->
@@ -58,6 +59,9 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
             binding.recView.adapter = adapter
 
+            val emptyStateObserver = EmptyStateObserver(recView,binding.emptyStateRecyclerView)
+            adapter.registerAdapterDataObserver(emptyStateObserver)
+
             recView.itemAnimator = LandingAnimator().apply {
                 addDuration = 440
             }
@@ -67,7 +71,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     if (newState == RecyclerView.SCROLL_STATE_IDLE
                         && !fabAdd.isExtended
-                        && recyclerView.computeVerticalScrollOffset() == 0) {
+                        && recyclerView.computeVerticalScrollOffset() == 0
+                    ) {
                         fabAdd.extend()
                     }
                     super.onScrollStateChanged(recyclerView, newState)

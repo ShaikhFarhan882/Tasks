@@ -29,7 +29,7 @@ class AddFragment : Fragment() {
         val binding = FragmentAddBinding.inflate(inflater)
         // Inflate the layout for this fragment
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Add Tasks"
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Add Task"
 
         val myAdapter = ArrayAdapter<String>(
             requireActivity(),

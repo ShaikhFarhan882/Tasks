@@ -60,6 +60,7 @@
             android:layout_marginTop="12dp"
             style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
             android:text="Add Task"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
