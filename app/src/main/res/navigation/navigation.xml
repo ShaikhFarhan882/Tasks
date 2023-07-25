@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_listFragment_to_updateFragment"
             app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_settingsFragment"
+            app:destination="@id/settings" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -40,4 +43,5 @@
             android:name="taskEntity"
             app:argType="com.example.tasks.database.TaskEntity" />
     </fragment>
+
 </navigation>

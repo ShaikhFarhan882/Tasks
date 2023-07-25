@@ -1,21 +1,27 @@
 package com.example.tasks.ui.tasklist
 
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.tasks.R
 import com.example.tasks.databinding.FragmentListBinding
 import com.example.tasks.utils.EmptyStateObserver
+import com.example.tasks.utils.MyPreferences
 import com.example.tasks.viewmodel.TaskViewModel
 import es.dmoral.toasty.Toasty
-import jp.wasabeef.recyclerview.animators.LandingAnimator
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 
 class ListFragment : Fragment(), SearchView.OnQueryTextListener {
@@ -57,12 +63,14 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             recView.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
+            /*   recView.layoutManager = LinearLayoutManager(layoutInflater.context)*/
+
             binding.recView.adapter = adapter
 
-            val emptyStateObserver = EmptyStateObserver(recView,binding.emptyStateRecyclerView)
+            val emptyStateObserver = EmptyStateObserver(recView, binding.emptyStateRecyclerView)
             adapter.registerAdapterDataObserver(emptyStateObserver)
 
-            recView.itemAnimator = LandingAnimator().apply {
+            recView.itemAnimator = SlideInUpAnimator().apply {
                 addDuration = 440
             }
 
@@ -116,16 +124,20 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
             R.id.sort_by_priority -> {
                 viewModel.sortByPriority
-                    .observe(viewLifecycleOwner, { tasks ->
+                    .observe(viewLifecycleOwner) { tasks ->
                         adapter.submitList(tasks)
                         Toasty.normal(requireContext(), "High to Low", Toasty.LENGTH_SHORT).show()
-                    })
+                    }
             }
 
             R.id.default_view -> {
                 viewModel.getAllTasks.observe(viewLifecycleOwner) {
                     adapter.submitList(it)
                 }
+            }
+
+            R.id.settings -> {
+                chooseThemeDialog()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -174,6 +186,42 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             .setNegativeButton("No", null)
             .show()
     }
+
+
+    private fun chooseThemeDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(getString(R.string.current_theme))
+        val styles = arrayOf("Light", "Dark", "System default")
+        val checkedItem = MyPreferences(requireContext()).darkMode
+
+        builder.setSingleChoiceItems(styles, checkedItem) { dialog, which ->
+
+            when (which) {
+                0 -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    MyPreferences(requireContext()).darkMode = 0
+                    Toast.makeText(requireContext(), "Light Theme Applied", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+                1 -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    MyPreferences(requireContext()).darkMode = 1
+                    Toast.makeText(requireContext(), "Dark Theme Applied", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+                2 -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    MyPreferences(requireContext()).darkMode = 2
+                    Toast.makeText(requireContext(), "System Default Theme Applied ", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+
+            }
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
 
 
 }

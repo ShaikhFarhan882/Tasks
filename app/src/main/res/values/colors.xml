@@ -63,4 +63,8 @@
     <color name="md_theme_dark_scrim">#000000</color>
 
     <color name="white">#FFFFFF</color>
+
+    <color name="high_red">#E12A2A</color>
+    <color name="med_yellow">#BA9637</color>
+    <color name="green_low">#088E53</color>
 </resources>

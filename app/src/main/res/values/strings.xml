@@ -8,4 +8,7 @@
         <item>Medium Priority</item>
         <item>Low Priority</item>
     </string-array>
+
+    <string name="current_theme">Current Theme</string>
+
 </resources>

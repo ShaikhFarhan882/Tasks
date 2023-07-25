@@ -19,6 +19,7 @@
         <Spinner
             android:id="@+id/spinner_priority_update"
             android:layout_width="0dp"
+            style="@style/Widget.AppCompat.Spinner.DropDown"
             android:layout_height="40dp"
             android:layout_marginTop="24dp"
             android:entries="@array/priority_list"

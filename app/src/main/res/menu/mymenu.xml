@@ -8,6 +8,14 @@
         android:title=""
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />
+
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_setting"
+        app:showAsAction="always"/>
+
+
     <item
         android:id="@+id/delete_all"
         android:title="Delete All"
@@ -21,6 +29,9 @@
         android:id="@+id/default_view"
         android:title="Show as Default"
         app:showAsAction="never"/>
+
+
+
 
 
 </menu>
